@@ -1,5 +1,5 @@
 HELP.md
-resources/application.properties.local
+src/main/resources/application.properties.local
 .gradle
 build/
 gradle/
