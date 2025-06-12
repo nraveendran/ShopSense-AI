@@ -1,0 +1,61 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.0'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'spring.ai.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(24)
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+	maven {
+		name = 'Central Portal Snapshots'
+		url = 'https://central.sonatype.com/repository/maven-snapshots/'
+	}
+}
+
+ext {
+	set('springAiVersion', "1.0.0-RC1")
+}
+
+dependencies {
+	implementation platform("org.springframework.ai:spring-ai-bom:1.0.0-RC1")
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.ai:spring-ai-openai'
+	implementation 'org.springframework.ai:spring-ai-ollama'
+	implementation 'org.springframework.ai:spring-ai-vector-store'
+	implementation 'org.springframework.ai:spring-ai-advisors-vector-store'
+	implementation 'org.springframework.ai:spring-ai-client-chat'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'org.postgresql:postgresql'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310' // for ZonedDateTime
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation 'net.sourceforge.tess4j:tess4j:5.15.0'
+
+	implementation files('/Users/nidhishnair/opencv-4.11.0/build/bin/opencv-4110.jar')
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="spring.ai.example.spring_ai_demo.SpringAiDemoApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-06-08T06:00:12.692Z" hostname="Nidhishs-MacBook-Pro.local" time="0.289">
+  <properties/>
+  <testcase name="contextLoads()" classname="spring.ai.example.spring_ai_demo.SpringAiDemoApplicationTests" time="0.289"/>
+  <system-out><![CDATA[Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+01:00:12.062 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [spring.ai.example.spring_ai_demo.SpringAiDemoApplicationTests]: SpringAiDemoApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+01:00:12.097 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration spring.ai.SpringAiDemoApplication for test class spring.ai.example.spring_ai_demo.SpringAiDemoApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.0)
+
+2025-06-08T01:00:12.210-05:00  INFO 48017 --- [spring-ai-demo] [    Test worker] s.a.e.s.SpringAiDemoApplicationTests     : Starting SpringAiDemoApplicationTests using Java 24.0.1 with PID 48017 (started by nidhishnair in /Users/nidhishnair/IdeaProjects/spring-ai-demo)
+2025-06-08T01:00:12.210-05:00  INFO 48017 --- [spring-ai-demo] [    Test worker] s.a.e.s.SpringAiDemoApplicationTests     : No active profile set, falling back to 1 default profile: "default"
+2025-06-08T01:00:12.688-05:00  INFO 48017 --- [spring-ai-demo] [    Test worker] s.a.e.s.SpringAiDemoApplicationTests     : Started SpringAiDemoApplicationTests in 0.551 seconds (process running for 0.91)
+Let's inspect the beans provided by Spring Boot:
+poetryController
+poetryServiceImpl
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/nidhishnair/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.5/58f9507f5f28d1d3e7adfb4ec2fe37c29d332c9b/byte-buddy-agent-1.17.5.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
