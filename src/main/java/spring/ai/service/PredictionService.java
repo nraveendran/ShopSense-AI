@@ -5,7 +5,7 @@ package spring.ai.service;
 
 import org.springframework.stereotype.Service;
 import spring.ai.dao.PredictionRepository;
-import spring.ai.model.ItemPredictionDto;
+import spring.ai.dto.ItemPredictionDto;
 
 import java.util.List;
 

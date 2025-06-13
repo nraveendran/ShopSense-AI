@@ -6,7 +6,7 @@ package spring.ai.dao;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
-import spring.ai.model.ItemPredictionDto;
+import spring.ai.dto.ItemPredictionDto;
 
 import java.util.List;
 

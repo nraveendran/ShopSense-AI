@@ -2,7 +2,7 @@ package spring.ai.controller;
 
 
 
-import spring.ai.model.ItemPredictionDto;
+import spring.ai.dto.ItemPredictionDto;
 import spring.ai.service.PredictionService;
 import org.springframework.web.bind.annotation.*;
 

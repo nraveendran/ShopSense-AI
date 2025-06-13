@@ -1,4 +1,4 @@
-package spring.ai.model;
+package spring.ai.dto;
 
 import java.math.BigDecimal;
 import java.sql.Date;

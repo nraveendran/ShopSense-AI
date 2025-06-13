@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import spring.ai.entity.StoreReceipt;
-import spring.ai.model.StoreReceiptDTO;
+import spring.ai.dto.StoreReceiptDTO;
 import spring.ai.service.ReceiptService;
 
 

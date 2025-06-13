@@ -1,4 +1,4 @@
-package spring.ai.model;
+package spring.ai.dto;
 
 public class ReceiptItemDTO {
     private String itemName;

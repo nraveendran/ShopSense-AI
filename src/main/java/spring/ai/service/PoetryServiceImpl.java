@@ -45,7 +45,7 @@ public class PoetryServiceImpl implements PoetryService {
 //
 //        ChatClient chatClient;
 //
-//        if (model.equals("openai")) {
+//        if (dto.equals("openai")) {
 //            chatClient = openAiChatClient;
 //        } else {
 //            chatClient = mistralChatClient;

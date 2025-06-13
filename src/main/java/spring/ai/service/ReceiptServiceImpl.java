@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import spring.ai.dao.StoreReceiptRepository;
 import spring.ai.entity.ReceiptItem;
 import spring.ai.entity.StoreReceipt;
-import spring.ai.model.StoreReceiptDTO;
+import spring.ai.dto.StoreReceiptDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

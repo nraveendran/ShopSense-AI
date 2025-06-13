@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import spring.ai.model.StoreReceiptDTO;
+import spring.ai.dto.StoreReceiptDTO;
 import spring.ai.service.OpenAIImageProcessService;
 import spring.ai.service.PoetryService;
 
@@ -28,7 +28,7 @@ public class PoetryController {
 
    public record StructuredJoke(String subject, String setup, String punchLine, String explanation, int rating) {}
 
-    @GetMapping("/{model}/{userInput}")
+    @GetMapping("/{dto}/{userInput}")
    String generation(@PathVariable String model, @PathVariable String userInput) {
       return poetryService.getPromptResponse(model, userInput);
     }

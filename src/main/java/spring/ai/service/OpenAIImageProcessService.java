@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MimeTypeUtils;
-import spring.ai.model.StoreReceiptDTO;
+import spring.ai.dto.StoreReceiptDTO;
 
 @Service
 public class OpenAIImageProcessService {
