@@ -17,8 +17,14 @@ public class PredictionService {
         this.predictionRepository = predictionRepository;
     }
 
-    public List<ItemPredictionDto> getUpcomingPredictions() {
-        return predictionRepository.getPredictedPurchases();
+    public List<ItemPredictionDto> getUpcomingPredictions(int days) {
+        return predictionRepository.getPredictedPurchases(days);
     }
+
+
+    public List<ItemPredictionDto> getPredictedItems(String itemCategory, int days) {
+        return predictionRepository.findUpcomingItemsByCategoryWithinDays(itemCategory, days);
+    }
+
 }
 

@@ -17,9 +17,19 @@ public class PredictionController {
         this.predictionService = predictionService;
     }
 
-    @GetMapping("/upcoming")
-    public List<ItemPredictionDto> getUpcomingPurchases() {
-        return predictionService.getUpcomingPredictions();
+    @GetMapping("/upcoming/items")
+    public List<ItemPredictionDto> getUpcomingPurchases(
+            @RequestParam(name = "days", defaultValue = "7") int days) {
+        return predictionService.getUpcomingPredictions(days);
     }
+
+
+    @GetMapping("/upcoming/category")
+    public List<ItemPredictionDto> getUpcomingPredictions(
+            @RequestParam String itemCategory,
+            @RequestParam(defaultValue = "7") int days) {
+        return predictionService.getPredictedItems(itemCategory, days);
+    }
+
 }
 

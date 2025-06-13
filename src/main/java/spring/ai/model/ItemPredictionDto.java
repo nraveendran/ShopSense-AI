@@ -1,18 +1,17 @@
 package spring.ai.model;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.sql.Date;
 
 
 public class ItemPredictionDto {
     private String itemName;
     private String itemCategory;
-    private Timestamp lastPurchase;
+    private Date lastPurchase;
     private BigDecimal avgDaysBetweenPurchases;
-    private Timestamp predictedNextPurchase;
+    private Date predictedNextPurchase;
 
-    public ItemPredictionDto(String itemName, String itemCategory, Timestamp lastPurchase, BigDecimal avgDaysBetweenPurchases, Timestamp predictedNextPurchase) {
+    public ItemPredictionDto(String itemName, String itemCategory, Date lastPurchase, BigDecimal avgDaysBetweenPurchases, Date predictedNextPurchase) {
         this.itemName = itemName;
         this.itemCategory = itemCategory;
         this.lastPurchase = lastPurchase;
@@ -29,7 +28,7 @@ public class ItemPredictionDto {
         return itemCategory;
     }
 
-    public Timestamp getLastPurchase() {
+    public Date getLastPurchase() {
         return lastPurchase;
     }
 
@@ -37,7 +36,7 @@ public class ItemPredictionDto {
         return avgDaysBetweenPurchases;
     }
 
-    public Timestamp getPredictedNextPurchase() {
+    public Date getPredictedNextPurchase() {
         return predictedNextPurchase;
     }
 }
