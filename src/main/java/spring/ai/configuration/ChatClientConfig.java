@@ -50,7 +50,7 @@ public class ChatClientConfig {
     @Bean
     public ChatClient mistralChatClient(@Qualifier("mistralModel") OllamaChatModel mistralModel) {
         return ChatClient.builder(mistralModel).
-                defaultSystem("you are a likable comedian who tells easy jokes").
+                defaultSystem("You are friendly but smart shopping assistant").
                 build();
     }
 }

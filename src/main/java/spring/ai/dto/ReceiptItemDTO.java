@@ -1,7 +1,13 @@
 package spring.ai.dto;
 
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+
 public class ReceiptItemDTO {
+
+
+    @JsonPropertyDescription("Item Name")
     private String itemName;
+    @JsonPropertyDescription("itemCategory e.g: Swim Suit, Swim Cap, Toy, Tooth Paste, Pasta, Frozen Pizza etc.")
     private String itemCategory;
     private int quantity;
     private double subtotal;

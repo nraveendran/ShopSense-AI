@@ -20,8 +20,7 @@ public class PoetryServiceImpl implements PoetryService {
 
 
 
-
-     ChatMemoryRepository chatMemoryRepository = new InMemoryChatMemoryRepository();
+    ChatMemoryRepository chatMemoryRepository = new InMemoryChatMemoryRepository();
 
     ChatMemory chatMemory = MessageWindowChatMemory.builder()
             .chatMemoryRepository(chatMemoryRepository)
@@ -35,6 +34,9 @@ public class PoetryServiceImpl implements PoetryService {
 
     @Autowired
     VectorStore simpleVectorStore;
+
+    @Autowired
+    StoreAnalyticsService storeAnalyticsService;
 
     public PoetryServiceImpl() {
     }
@@ -107,10 +109,13 @@ public class PoetryServiceImpl implements PoetryService {
 
         String dataTime = openAiChatClient.prompt()
                 .user(u -> u.text("""
-                                Can you set an alarm for 10 minutes from now?""")
+                                Answer the following question about shopping patterns.
+                                You are allowed to make good deductions to interpret the intention of the users question 
+                                but do NOT make up mock data. Here is the question: {userInput}
+                                """)
                         .param("userInput", userInput))
                 .advisors(new SimpleLoggerAdvisor())
-                .tools(new DayTimeCalculatorTool())
+                .tools(storeAnalyticsService)
                 .call().content() ;
 
 

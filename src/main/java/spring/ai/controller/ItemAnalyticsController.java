@@ -31,13 +31,6 @@ public class ItemAnalyticsController {
     }
 
 
-//    @GetMapping("/category/{itemCategory}")
-//    public List<ItemPurchaseStatsDto> getItemsPurchasedByStoreCategory(
-//            @PathVariable String storeCategory,
-//            @RequestParam(defaultValue = "30") int days
-//    ) {
-//        return storeAnalyticsService.getItemsPurchasedFromStoreCategory(storeCategory, days);
-//    }
 
 
 

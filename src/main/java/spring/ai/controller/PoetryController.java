@@ -53,4 +53,6 @@ public class PoetryController {
     StoreReceiptDTO extractText(@PathVariable String userInput) {
         return openAIImageProcessService.extractTextFromImage(userInput);
     }
+
+
 }

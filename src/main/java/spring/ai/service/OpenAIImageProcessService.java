@@ -24,9 +24,10 @@ public class OpenAIImageProcessService {
         Message message = UserMessage.builder().text("The attached image is a store receipt which " +
                         "contains store name, store address, purchase date, items purchased with quantity " +
                         "and price and total price.  Read the text from the image. " +
-                        "Try to categorize the store into a storeCategory. e.g : grocery store, restaurant" +
-                        "Try to categorize items into a itemCategory e.g: Swim Suit, Swim Cap, " +
-                        "Toy, Tooth Paste, Pasta, Frozen Pizza etc.").
+                        "Categorize the store into a storeCategory. e.g : grocery store, restaurant" +
+                        "Categorize items into a itemCategory e.g: Swim Suit, Swim Cap, " +
+                        "Toy, Tooth Paste, Pasta, Frozen Pizza etc."
+                        ).
                 media(new Media(MimeTypeUtils.IMAGE_PNG, imageResource)).build();
 
         Prompt prompt = Prompt.builder().messages(message).build();
