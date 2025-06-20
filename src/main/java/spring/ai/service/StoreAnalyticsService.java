@@ -6,7 +6,7 @@ import spring.ai.dto.ItemStorePurchaseDto;
 import java.util.List;
 
 public interface StoreAnalyticsService {
-    List<ItemPurchaseStatsDto> getItemsPurchasedFromStore(String storeName, int days);
+    List<ItemPurchaseStatsDto> getItemsPurchasedFromStore(String genericStoreName, int days);
 
     List<ItemPurchaseStatsDto> getItemsPurchasedFromStoreCategory(String storeCategory, int days);
 

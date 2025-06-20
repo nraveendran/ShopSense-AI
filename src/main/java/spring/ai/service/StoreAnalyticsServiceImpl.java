@@ -25,9 +25,9 @@ public class StoreAnalyticsServiceImpl implements StoreAnalyticsService {
             " If number of days is not mentioned, a default of 30 days is assumed ")
     @Override
     public List<ItemPurchaseStatsDto> getItemsPurchasedFromStore(
-            @ToolParam(description = "Name of the store")String storeName,
+            @ToolParam(description = "Name of the store")String genericStoreName,
             @ToolParam(description = "Number of days the items was purchased within") int days) {
-        return receiptItemRepository.findItemStatsByStoreNameAndRecentDays(storeName, days);
+        return receiptItemRepository.findItemStatsByStoreNameAndRecentDays(genericStoreName, days);
     }
 
     @Tool(description = "Get the items purchased from a store category within the last specified amount of days." +

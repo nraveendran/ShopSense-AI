@@ -5,7 +5,7 @@ import java.util.Date;
 public interface ItemStorePurchaseDto {
     String getItemName();
     String getItemCategory();
-    String getStoreName();
+    String getGenericStoreName();
     String getStoreCategory();
     Date getPurchaseDate();
 }

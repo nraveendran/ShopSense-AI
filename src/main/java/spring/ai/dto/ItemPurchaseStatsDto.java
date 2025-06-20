@@ -3,7 +3,7 @@ package spring.ai.dto;
 public interface ItemPurchaseStatsDto {
     String getItemName();
     Long getTimesPurchased();
-    String getStoreName();       // New
+    String getGenericStoreName();       // New
     String getStoreCategory();   // New
 }
 

@@ -14,6 +14,7 @@ public class StoreReceipt {
     private Long id;
 
     private String storeName;
+    private String genericStoreName;
     private String storeAddress;
     private String storeCategory;
     private Date purchaseDate;
@@ -37,25 +38,22 @@ public class StoreReceipt {
 
     // Constructors
     public StoreReceipt(String storeName, String storeAddress, Date purchaseDate,
-                        List<ReceiptItem> receiptItemEntities, double total, String storeCategory) {
+                        List<ReceiptItem> receiptItemEntities, double total, String storeCategory, String genericStoreName) {
         this.storeName = storeName;
         this.storeAddress = storeAddress;
         this.receiptItemEntities = receiptItemEntities;
         this.total = total;
         this.purchaseDate = purchaseDate;
         this.storeCategory = storeCategory;
+        this.genericStoreName=genericStoreName;
     }
 
-    @Override
-    public String toString() {
-        return "StoreReceipt{" +
-                "storeName='" + storeName + '\'' +
-                ", storeAddress='" + storeAddress + '\'' +
-                ", storeCategory='" + storeCategory + '\'' +
-                ", purchaseDate=" + purchaseDate +
-                ", items=" + receiptItemEntities +
-                ", total=" + total +
-                '}';
+    public String getGenericStoreName() {
+        return genericStoreName;
+    }
+
+    public void setGenericStoreName(String genericStoreName) {
+        this.genericStoreName = genericStoreName;
     }
 
     public String getStoreCategory() {
@@ -100,4 +98,17 @@ public class StoreReceipt {
         this.total = total;
     }
 
+    @Override
+    public String toString() {
+        return "StoreReceipt{" +
+                "id=" + id +
+                ", storeName='" + storeName + '\'' +
+                ", genericStoreName='" + genericStoreName + '\'' +
+                ", storeAddress='" + storeAddress + '\'' +
+                ", storeCategory='" + storeCategory + '\'' +
+                ", purchaseDate=" + purchaseDate +
+                ", total=" + total +
+                ", receiptItemEntities=" + receiptItemEntities +
+                '}';
+    }
 }

@@ -12,7 +12,8 @@ public class StoreReceiptDTO {
             "from the Store Name. Here are some examples " +
             "Store Name is Target #3523, Generic Store name is Target" +
             "Store Name is Walmart Richland Hills, Generic Store name is Walmart" +
-            "Store Name is Costco LTD, Generic Store Name is Costco")
+            "Store Name is Costco LTD, Generic Store Name is Costco" +
+            "Store Name is Sprouts Farmers Market, Generic Store Name is Sprouts")
     private String genericStoreName;
     @JsonPropertyDescription("Store Address as it appears in the image")
     private String storeAddress;

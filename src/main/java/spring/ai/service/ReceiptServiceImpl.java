@@ -22,6 +22,7 @@ public class ReceiptServiceImpl implements ReceiptService {
     public StoreReceipt saveReceipt(StoreReceiptDTO dto) {
         StoreReceipt receipt = new StoreReceipt();
         receipt.setStoreName(dto.getStoreName());
+        receipt.setGenericStoreName(dto.getGenericStoreName());
         receipt.setStoreAddress(dto.getStoreAddress());
         receipt.setStoreCategory(dto.getStoreCategory());
         receipt.setTotal(dto.getTotal());

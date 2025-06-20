@@ -15,12 +15,12 @@ public class StoreAnalyticsController {
     @Autowired
     private StoreAnalyticsService storeAnalyticsService;
 
-    @GetMapping("/{storeName}/items")
+    @GetMapping("/{genericStoreName}/items")
     public List<ItemPurchaseStatsDto> getItemsPurchasedFromStore(
-            @PathVariable String storeName,
+            @PathVariable String genericStoreName,
             @RequestParam(defaultValue = "30") int days
     ) {
-        return storeAnalyticsService.getItemsPurchasedFromStore(storeName, days);
+        return storeAnalyticsService.getItemsPurchasedFromStore(genericStoreName, days);
     }
 
     @GetMapping("/category/{storeCategory}/items")

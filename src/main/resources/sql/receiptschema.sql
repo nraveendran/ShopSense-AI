@@ -5,6 +5,7 @@ CREATE SCHEMA IF NOT EXISTS receiptschema;
 CREATE TABLE IF NOT EXISTS receiptschema.store_receipt (
     id SERIAL PRIMARY KEY,
     store_name VARCHAR(255) NOT NULL,
+    generic_store_name VARCHAR(255) NOT NULL,
     store_address TEXT NOT NULL,
     store_category VARCHAR(255),
     total NUMERIC(10, 2),

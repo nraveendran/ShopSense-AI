@@ -15,22 +15,22 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
     SELECT 
         ri.item_name AS itemName,
         COUNT(*) AS timesPurchased,
-        sr.store_name AS storeName,
+        sr.generic_store_name AS genericStoreName,
         sr.store_category AS storeCategory
     FROM 
         receiptschema.receipt_item ri
     JOIN 
         receiptschema.store_receipt sr ON sr.id = ri.receipt_id
     WHERE 
-        sr.store_name = :storeName
+        sr.generic_store_name = :genericStoreName
         AND sr.purchase_date >= CURRENT_DATE - make_interval(days := :days)
     GROUP BY 
-        ri.item_name, sr.store_name, sr.store_category
+        ri.item_name, sr.generic_store_name, sr.store_category
     ORDER BY 
         timesPurchased DESC
     """, nativeQuery = true)
     List<ItemPurchaseStatsDto> findItemStatsByStoreNameAndRecentDays(
-            @Param("storeName") String storeName,
+            @Param("genericStoreName") String genericStoreName,
             @Param("days") int days
     );
 
@@ -38,7 +38,7 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
     SELECT 
         ri.item_name AS itemName,
         COUNT(*) AS timesPurchased,
-        sr.store_name AS storeName,
+        sr.generic_store_name AS genericStoreName,
         sr.store_category AS storeCategory
     FROM 
         receiptschema.receipt_item ri
@@ -48,7 +48,7 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
         sr.store_category = :storeCategory
         AND sr.purchase_date >= CURRENT_DATE  - make_interval(days := :days)
     GROUP BY 
-        ri.item_name, sr.store_name, sr.store_category
+        ri.item_name, sr.generic_store_name, sr.store_category
     ORDER BY 
         timesPurchased DESC
     """, nativeQuery = true)
@@ -61,7 +61,7 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
     SELECT 
         ri.item_name AS itemName,
         ri.item_category AS itemCategory,
-        sr.store_name AS storeName,
+        sr.generic_store_name AS genericStoreName,
         sr.store_category AS storeCategory,
         sr.purchase_date AS purchaseDate
     FROM 
@@ -84,7 +84,7 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
     SELECT 
         ri.item_name AS itemName,
         ri.item_category AS itemCategory,
-        sr.store_name AS storeName,
+        sr.generic_store_name AS genericStoreName,
         sr.store_category AS storeCategory,
         sr.purchase_date AS purchaseDate
     FROM 
