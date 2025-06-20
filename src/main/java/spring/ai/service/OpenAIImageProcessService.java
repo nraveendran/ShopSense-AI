@@ -7,6 +7,7 @@ import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.content.Media;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MimeTypeUtils;
@@ -17,9 +18,14 @@ public class OpenAIImageProcessService {
 
     @Autowired
     ChatClient openAiChatClient;
+    @Value("${spring.ai.service.receipt.path}")
+    String filePath;
 
       public StoreReceiptDTO extractTextFromImage(String imageName) {
-        var imageResource = new FileSystemResource("/Users/nidhishnair/Downloads/receipt1.jpg");
+
+       var  imagePath = filePath + "/" + imageName;
+
+        var imageResource = new FileSystemResource(imagePath);
 
         Message message = UserMessage.builder().text("The attached image is a store receipt which " +
                         "contains store name, store address, purchase date, items purchased with quantity " +

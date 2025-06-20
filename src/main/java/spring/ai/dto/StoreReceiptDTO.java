@@ -1,10 +1,20 @@
 package spring.ai.dto;
 
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+
 import java.util.Date;
 import java.util.List;
 
 public class StoreReceiptDTO {
+    @JsonPropertyDescription("Store Name as it appears in the image")
     private String storeName;
+    @JsonPropertyDescription("Extract a generic Store name which is easier to lookup " +
+            "from the Store Name. Here are some examples " +
+            "Store Name is Target #3523, Generic Store name is Target" +
+            "Store Name is Walmart Richland Hills, Generic Store name is Walmart" +
+            "Store Name is Costco LTD, Generic Store Name is Costco")
+    private String genericStoreName;
+    @JsonPropertyDescription("Store Address as it appears in the image")
     private String storeAddress;
     private String storeCategory;
     private Date purchaseDate;
@@ -12,9 +22,10 @@ public class StoreReceiptDTO {
     private double total;
 
     // Constructors
-    public StoreReceiptDTO(String storeName, String storeAddress, Date purchaseDate,
+    public StoreReceiptDTO(String storeName, String genericStoreName, String storeAddress, Date purchaseDate,
                            List<ReceiptItemDTO> items, double total, String storeCategory) {
         this.storeName = storeName;
+        this.genericStoreName = genericStoreName;
         this.storeAddress = storeAddress;
         this.items = items;
         this.total = total;
@@ -24,13 +35,14 @@ public class StoreReceiptDTO {
 
     @Override
     public String toString() {
-        return "StoreReceipt{" +
-                "storeName='" + storeName + '\'' +
-                ", storeAddress='" + storeAddress + '\'' +
-                ", storeCategory='" + storeCategory + '\'' +
-                ", purchaseDate=" + purchaseDate +
+        return "StoreReceiptDTO{" +
+                "total=" + total +
                 ", items=" + items +
-                ", total=" + total +
+                ", purchaseDate=" + purchaseDate +
+                ", storeCategory='" + storeCategory + '\'' +
+                ", storeAddress='" + storeAddress + '\'' +
+                ", genericStoreName='" + genericStoreName + '\'' +
+                ", storeName='" + storeName + '\'' +
                 '}';
     }
 
@@ -83,4 +95,11 @@ public class StoreReceiptDTO {
         this.total = total;
     }
 
+    public String getGenericStoreName() {
+        return genericStoreName;
+    }
+
+    public void setGenericStoreName(String genericStoreName) {
+        this.genericStoreName = genericStoreName;
+    }
 }

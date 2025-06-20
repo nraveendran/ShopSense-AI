@@ -1,4 +1,4 @@
-package spring.ai.service;
+package spring.ai.service.opencv;
 
 
 
