@@ -102,4 +102,13 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
             @Param("days") int days
     );
 
+
+    @Query(value = """
+    SELECT DISTINCT ri.item_category 
+    FROM receiptschema.receipt_item ri
+    WHERE ri.item_category IS NOT NULL
+    ORDER BY ri.item_category
+    """, nativeQuery = true)
+    List<String> findAllDistinctItemCategories();
+
 }

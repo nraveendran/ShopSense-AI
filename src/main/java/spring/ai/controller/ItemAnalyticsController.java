@@ -3,7 +3,6 @@ package spring.ai.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import spring.ai.dto.ItemPurchaseStatsDto;
 import spring.ai.dto.ItemStorePurchaseDto;
 import spring.ai.service.StoreAnalyticsService;
 
@@ -30,6 +29,10 @@ public class ItemAnalyticsController {
         return storeAnalyticsService.getItemPurchaseHistoryByCategoryWithinDays(itemCategory, days);
     }
 
+    @GetMapping("/category/list")
+    public List<String> getUniqueItemCategories() {
+        return storeAnalyticsService.getUniqueItemCategories();
+    }
 
 
 

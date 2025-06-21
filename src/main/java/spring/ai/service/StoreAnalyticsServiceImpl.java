@@ -6,6 +6,7 @@ import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.ai.dao.ReceiptItemRepository;
+import spring.ai.dao.StoreReceiptRepository;
 import spring.ai.dto.ItemPurchaseStatsDto;
 import spring.ai.dto.ItemStorePurchaseDto;
 
@@ -16,9 +17,12 @@ public class StoreAnalyticsServiceImpl implements StoreAnalyticsService {
 
     private final ReceiptItemRepository receiptItemRepository;
 
+    private final StoreReceiptRepository storeReceiptRepository;
+
     @Autowired
-    public StoreAnalyticsServiceImpl(ReceiptItemRepository receiptItemRepository) {
+    public StoreAnalyticsServiceImpl(ReceiptItemRepository receiptItemRepository, StoreReceiptRepository storeReceiptRepository) {
         this.receiptItemRepository = receiptItemRepository;
+        this.storeReceiptRepository=storeReceiptRepository;
     }
 
     @Tool(description = "Get the items purchased from a store within the last specified  amount of days." +
@@ -60,5 +64,18 @@ public class StoreAnalyticsServiceImpl implements StoreAnalyticsService {
         return receiptItemRepository.findStoresAndDatesByItemCategoryWithinDays(itemCategory, days);
     }
 
+    @Tool(description = "Retrieve the unique list of Store names" +
+            "You should use the values returned from this function as parameter to tools using Store name")
+    @Override
+    public List<String> getUniqueGenericStoreNames() {
+        return storeReceiptRepository.findAllDistinctGenericStoreNames();
+    }
+
+    @Tool(description = "Retrieve the unique list of Item Categories" +
+            "You should use the values returned from this function as parameter to tools using Item Categories")
+    @Override
+    public List<String> getUniqueItemCategories() {
+        return receiptItemRepository.findAllDistinctItemCategories();
+    }
 
 }

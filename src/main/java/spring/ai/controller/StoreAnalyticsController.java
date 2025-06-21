@@ -31,6 +31,10 @@ public class StoreAnalyticsController {
         return storeAnalyticsService.getItemsPurchasedFromStoreCategory(storeCategory, days);
     }
 
+    @GetMapping("/list")
+    public List<String> getUniqueStoreNames(){
+        return storeAnalyticsService.getUniqueGenericStoreNames();
+    }
 
 
 }
