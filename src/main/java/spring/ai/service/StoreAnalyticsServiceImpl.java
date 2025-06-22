@@ -45,7 +45,7 @@ public class StoreAnalyticsServiceImpl implements StoreAnalyticsService {
     }
 
     @Override
-    @Tool(description = "Get the store from whicn an item was purchased within the last specified  amount of days." +
+    @Tool(description = "Get the store from which an item was purchased within the last specified  amount of days." +
             "Store name, store category, purchased date and item category is returned " +
             " If number of days is not mentioned, a default of 30 days is assumed ")
     public List<ItemStorePurchaseDto> getItemPurchaseHistoryByItemNameWithinDays(
@@ -55,7 +55,7 @@ public class StoreAnalyticsServiceImpl implements StoreAnalyticsService {
     }
 
     @Override
-    @Tool(description = "Get the store from whicn an item category was purchased within the last specified amount of days." +
+    @Tool(description = "Get the store from which an item category was purchased within the last specified amount of days." +
             "Store name, store category, purchased date and item category is returned " +
             " If number of days is not mentioned, a default of 30 days is assumed ")
     public List<ItemStorePurchaseDto> getItemPurchaseHistoryByCategoryWithinDays(
