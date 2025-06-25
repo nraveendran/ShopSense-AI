@@ -37,11 +37,11 @@ public class StoreAnalyticsServiceImpl implements StoreAnalyticsService {
     @Tool(description = "Get the items purchased from a store category within the last specified amount of days." +
             " If number of days is not mentioned, a default of 30 days is assumed.")
     @Override
-    public List<ItemPurchaseStatsDto> getItemsPurchasedFromStoreCategory(
-            @ToolParam(description = "store Category. Examples of store category are: " +
-                    "superstore, online marketplace, grocery store, retail chain, warehouse club, etc.") String storeCategory,
-            @ToolParam(description = "Number of days the items was purchased within")int days) {
-        return receiptItemRepository.findItemStatsByStoreCategoryAndRecentDays(storeCategory, days);
+    public List<ItemPurchaseStatsDto> getItemsPurchasedFromStoreCategories(
+            @ToolParam(description = "A list of Store Categories Examples of store category are: " +
+                    "superstore, online marketplace, grocery store, retail chain, warehouse club, etc.") List<String> storeCategories,
+            @ToolParam(description = "Number of days the items was purchased within") int days) {
+        return receiptItemRepository.findItemStatsByStoreCategoryAndRecentDays(storeCategories, days);
     }
 
     @Override
@@ -76,6 +76,13 @@ public class StoreAnalyticsServiceImpl implements StoreAnalyticsService {
     @Override
     public List<String> getUniqueItemCategories() {
         return receiptItemRepository.findAllDistinctItemCategories();
+    }
+
+    @Tool(description = "Retrieve the unique list of Store Categories" +
+            "You should use the values returned from this function as parameter to tools using Store Categories")
+    @Override
+    public List<String> getUniqueStoreCategories() {
+        return storeReceiptRepository.findAllDistinctStoreCategories();
     }
 
 }

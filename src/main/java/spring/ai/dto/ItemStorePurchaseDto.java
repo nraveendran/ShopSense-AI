@@ -8,4 +8,7 @@ public interface ItemStorePurchaseDto {
     String getGenericStoreName();
     String getStoreCategory();
     Date getPurchaseDate();
+    Double getTotalSpent();
+    Double getAveragePrice();
 }
+

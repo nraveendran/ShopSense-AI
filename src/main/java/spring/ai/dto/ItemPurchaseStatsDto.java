@@ -5,5 +5,7 @@ public interface ItemPurchaseStatsDto {
     Long getTimesPurchased();
     String getGenericStoreName();       // New
     String getStoreCategory();   // New
+    Double getTotalSpent();
+    Double getAveragePrice();
 }
 

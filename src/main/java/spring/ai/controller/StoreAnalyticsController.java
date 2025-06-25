@@ -23,17 +23,22 @@ public class StoreAnalyticsController {
         return storeAnalyticsService.getItemsPurchasedFromStore(genericStoreName, days);
     }
 
-    @GetMapping("/category/{storeCategory}/items")
+    @GetMapping("/category/items-by-store-categories")
     public List<ItemPurchaseStatsDto> getItemsPurchasedByStoreCategory(
-            @PathVariable String storeCategory,
+            @RequestParam  List<String> storeCategories,
             @RequestParam(defaultValue = "30") int days
     ) {
-        return storeAnalyticsService.getItemsPurchasedFromStoreCategory(storeCategory, days);
+        return storeAnalyticsService.getItemsPurchasedFromStoreCategories(storeCategories, days);
     }
 
     @GetMapping("/list")
     public List<String> getUniqueStoreNames(){
         return storeAnalyticsService.getUniqueGenericStoreNames();
+    }
+
+    @GetMapping("/category/list")
+    public List<String> getUniqueStoreCategories(){
+        return storeAnalyticsService.getUniqueStoreCategories();
     }
 
 
