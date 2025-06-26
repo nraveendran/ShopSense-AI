@@ -17,15 +17,19 @@ public interface StoreAnalyticsService {
                     "superstore, online marketplace, grocery store, retail chain, warehouse club, etc.") List<String> storeCategories,
             @ToolParam(description = "Number of days the items was purchased within") int days);
 
-    List<ItemStorePurchaseDto> getItemPurchaseHistoryByItemNameWithinDays(String itemName, int days);
+    List<ItemStorePurchaseDto> getItemPurchaseHistoryByItemNameWithinDays(List<String> genericItemNames, int days);
 
-    List<ItemStorePurchaseDto> getItemPurchaseHistoryByCategoryWithinDays(String itemCategory, int days);
+    List<ItemStorePurchaseDto> getItemPurchaseHistoryByCategoryWithinDays(List<String> genericItemCategories, int days);
 
     @Tool(description = "Retrieve the unique list of store names supported by tools using Store Names ")
     List<String> getUniqueGenericStoreNames();
 
     @Tool(description = "Retrieve the unique list of Item Categories that can be used by tools needing Item Categories ")
     List<String> getUniqueItemCategories();
+
+    @Tool(description = "Retrieve the unique list of Generic Item Names" +
+            "You should use the values returned from this function as parameter to tools using Item Names")
+    List<String> getUniqueGenericItemNames();
 
     @Tool(description = "Retrieve the unique list of Store Categories that can be used by tools use Store Categories ")
     List<String> getUniqueStoreCategories();

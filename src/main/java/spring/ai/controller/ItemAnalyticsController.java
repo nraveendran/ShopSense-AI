@@ -15,18 +15,18 @@ public class ItemAnalyticsController {
     @Autowired
     private StoreAnalyticsService storeAnalyticsService;
 
-    @GetMapping("/{itemName}")
+    @GetMapping("/items-by-generic-item-names")
     public List<ItemStorePurchaseDto> getItemPurchaseHistoryWithinDays(
-            @PathVariable String itemName,
+            @RequestParam List<String> genericItemNames,
             @RequestParam(defaultValue = "30") int days) {
-        return storeAnalyticsService.getItemPurchaseHistoryByItemNameWithinDays(itemName, days);
+        return storeAnalyticsService.getItemPurchaseHistoryByItemNameWithinDays(genericItemNames, days);
     }
 
-    @GetMapping("/category/{itemCategory}")
+    @GetMapping("/category/items-by-item-categories")
     public List<ItemStorePurchaseDto> getItemPurchaseHistoryByCategoryWithinDays(
-            @PathVariable String itemCategory,
+            @RequestParam List<String> itemCategories,
             @RequestParam(defaultValue = "30") int days) {
-        return storeAnalyticsService.getItemPurchaseHistoryByCategoryWithinDays(itemCategory, days);
+        return storeAnalyticsService.getItemPurchaseHistoryByCategoryWithinDays(itemCategories, days);
     }
 
     @GetMapping("/category/list")
@@ -34,7 +34,10 @@ public class ItemAnalyticsController {
         return storeAnalyticsService.getUniqueItemCategories();
     }
 
-
+    @GetMapping("/list")
+    public List<String> getUniqueItemNames() {
+        return storeAnalyticsService.getUniqueGenericItemNames();
+    }
 
 
 }

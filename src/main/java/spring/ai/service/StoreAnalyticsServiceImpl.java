@@ -45,23 +45,23 @@ public class StoreAnalyticsServiceImpl implements StoreAnalyticsService {
     }
 
     @Override
-    @Tool(description = "Get the store from which an item was purchased within the last specified  amount of days." +
+    @Tool(description = "Get the store from which an item was purchased within the last specified amount of days." +
             "Store name, store category, purchased date and item category is returned " +
             " If number of days is not mentioned, a default of 30 days is assumed ")
     public List<ItemStorePurchaseDto> getItemPurchaseHistoryByItemNameWithinDays(
-            @ToolParam(description = "item name") String itemName,
+            @ToolParam(description = "a list of generic item names") List<String> genericItemNames,
             @ToolParam(description = "Number of days the items was purchased within")int days) {
-        return receiptItemRepository.findStoresAndDatesByItemNameWithinDays(itemName, days);
+        return receiptItemRepository.findStoresAndDatesByItemNameWithinDays(genericItemNames, days);
     }
 
     @Override
-    @Tool(description = "Get the store from which an item category was purchased within the last specified amount of days." +
+    @Tool(description = "Get the store and items by an Item categories purchased within the last specified amount of days." +
             "Store name, store category, purchased date and item category is returned " +
             " If number of days is not mentioned, a default of 30 days is assumed ")
     public List<ItemStorePurchaseDto> getItemPurchaseHistoryByCategoryWithinDays(
-            @ToolParam(description = "item category")String itemCategory,
+            @ToolParam(description = "a list of Item Categories")List<String> itemCategories,
             @ToolParam(description = "Number of days the items was purchased within") int days) {
-        return receiptItemRepository.findStoresAndDatesByItemCategoryWithinDays(itemCategory, days);
+        return receiptItemRepository.findStoresAndDatesByItemCategoryWithinDays(itemCategories, days);
     }
 
     @Tool(description = "Retrieve the unique list of Store names" +
@@ -76,6 +76,13 @@ public class StoreAnalyticsServiceImpl implements StoreAnalyticsService {
     @Override
     public List<String> getUniqueItemCategories() {
         return receiptItemRepository.findAllDistinctItemCategories();
+    }
+
+    @Tool(description = "Retrieve the unique list of Generic Item Names" +
+            "You should use the values returned from this function as parameter to tools using Item Names")
+    @Override
+    public List<String> getUniqueGenericItemNames() {
+        return receiptItemRepository.findAllDistinctGenericItemNames();
     }
 
     @Tool(description = "Retrieve the unique list of Store Categories" +

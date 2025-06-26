@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS receiptschema.store_receipt (
 CREATE TABLE IF NOT EXISTS receiptschema.receipt_item (
     id SERIAL PRIMARY KEY,
     item_name VARCHAR(255) NOT NULL,
+    generic_item_name VARCHAR(255) NOT NULL,
     quantity INT NOT NULL,
     subtotal NUMERIC(10, 2),
     item_category VARCHAR(255),

@@ -15,17 +15,19 @@ public class ReceiptItem {
     private String itemCategory;
     private int quantity;
     private double subtotal;
+    private String genericItemName;
 
     @ManyToOne
     @JoinColumn(name = "receipt_id")
     private StoreReceipt storeReceipt;
 
     // Constructor
-    public ReceiptItem(String itemName, int quantity, double subtotal, String itemCategory) {
+    public ReceiptItem(String itemName, int quantity, double subtotal, String itemCategory, String genericItemName) {
         this.itemName = itemName;
         this.quantity = quantity;
         this.subtotal = subtotal;
         this.itemCategory=itemCategory;
+        this.genericItemName = genericItemName;
     }
 
     public ReceiptItem() {
@@ -68,13 +70,24 @@ public class ReceiptItem {
         this.subtotal = subtotal;
     }
 
+    public String getGenericItemName() {
+        return genericItemName;
+    }
+
+    public void setGenericItemName(String genericItemName) {
+        this.genericItemName = genericItemName;
+    }
+
     @Override
     public String toString() {
         return "ReceiptItem{" +
-                "itemName='" + itemName + '\'' +
+                "id=" + id +
+                ", itemName='" + itemName + '\'' +
                 ", itemCategory='" + itemCategory + '\'' +
                 ", quantity=" + quantity +
                 ", subtotal=" + subtotal +
+                ", genericItemCategory='" + genericItemName + '\'' +
+                ", storeReceipt=" + storeReceipt +
                 '}';
     }
 }

@@ -108,7 +108,6 @@ public class StoreReceipt {
                 ", storeCategory='" + storeCategory + '\'' +
                 ", purchaseDate=" + purchaseDate +
                 ", total=" + total +
-                ", receiptItemEntities=" + receiptItemEntities +
                 '}';
     }
 }

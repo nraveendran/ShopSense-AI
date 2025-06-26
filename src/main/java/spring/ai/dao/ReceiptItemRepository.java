@@ -13,7 +13,7 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
 
     @Query(value = """
                     SELECT
-                        ri.item_name AS itemName,
+                        ri.generic_item_name AS genericItemName,
                         COUNT(*) AS timesPurchased,
                         SUM(ri.subtotal) AS totalSpent,
                         ROUND(AVG(ri.subtotal)::numeric, 2) AS averagePrice,
@@ -27,7 +27,7 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
                         sr.generic_store_name = :genericStoreName
                         AND sr.purchase_date >= CURRENT_DATE - make_interval(days := :days)
                     GROUP BY
-                        ri.item_name, sr.generic_store_name, sr.store_category
+                        ri.generic_item_name, sr.generic_store_name, sr.store_category
                     ORDER BY
                         timesPurchased DESC
             """, nativeQuery = true)
@@ -37,23 +37,23 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
     );
 
     @Query(value = """
-                    SELECT\s
-                        ri.item_name AS itemName,
+                    SELECT
+                        ri.generic_item_name AS genericItemName,
                         COUNT(*) AS timesPurchased,
                         SUM(ri.subtotal) AS totalSpent,
                         ROUND(AVG(ri.subtotal)::numeric, 2) AS averagePrice,
                         sr.generic_store_name AS genericStoreName,
                         sr.store_category AS storeCategory
-                    FROM\s
+                    FROM
                         receiptschema.receipt_item ri
-                    JOIN\s
+                    JOIN
                         receiptschema.store_receipt sr ON sr.id = ri.receipt_id
-                    WHERE\s
+                    WHERE
                         sr.store_category IN (:storeCategories)
                         AND sr.purchase_date >= CURRENT_DATE - make_interval(days := :days)
-                    GROUP BY\s
-                        ri.item_name, sr.generic_store_name, sr.store_category
-                    ORDER BY\s
+                    GROUP BY
+                        ri.generic_item_name,sr.generic_store_name, sr.store_category
+                    ORDER BY
                         timesPurchased DESC
             """, nativeQuery = true)
     List<ItemPurchaseStatsDto> findItemStatsByStoreCategoryAndRecentDays(
@@ -63,7 +63,7 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
 
     @Query(value = """
                     SELECT
-                        ri.item_name AS itemName,
+                        ri.generic_item_name AS genericItemName,
                         ri.item_category AS itemCategory,
                         SUM(ri.subtotal) AS totalSpent,
                         ROUND(AVG(ri.subtotal)::numeric, 2) AS averagePrice,
@@ -75,10 +75,10 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
                     JOIN
                         receiptschema.store_receipt sr ON sr.id = ri.receipt_id
                     WHERE
-                        ri.item_name = :itemName
+                        ri.generic_item_name in (:genericItemNames)
                         AND sr.purchase_date >= CURRENT_DATE - make_interval(days := :days)
                     GROUP BY
-                        ri.item_name,
+                        ri.generic_item_name,
                         ri.item_category,
                         sr.generic_store_name,
                         sr.store_category,
@@ -87,14 +87,14 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
                         sr.purchase_date DESC;
             """, nativeQuery = true)
     List<ItemStorePurchaseDto> findStoresAndDatesByItemNameWithinDays(
-            @Param("itemName") String itemName,
+            @Param("genericItemNames") List<String> genericItemNames,
             @Param("days") int days
     );
 
 
     @Query(value = """
                     SELECT
-                        ri.item_name AS itemName,
+                        ri.generic_item_name AS genericItemName,
                         ri.item_category AS itemCategory,
                         SUM(ri.subtotal) AS totalSpent,
                         ROUND(AVG(ri.subtotal)::numeric, 2) AS averagePrice,
@@ -106,10 +106,10 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
                     JOIN
                         receiptschema.store_receipt sr ON sr.id = ri.receipt_id
                     WHERE
-                        ri.item_category = :itemCategory
+                        ri.item_category in (:itemCategories)
                         AND sr.purchase_date >= CURRENT_DATE - make_interval(days := :days)
                     GROUP BY
-                        ri.item_name,
+                        ri.generic_item_name,
                         ri.item_category,
                         sr.generic_store_name,
                         sr.store_category,
@@ -118,7 +118,7 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
                         sr.purchase_date DESC;
             """, nativeQuery = true)
     List<ItemStorePurchaseDto> findStoresAndDatesByItemCategoryWithinDays(
-            @Param("itemCategory") String itemCategory,
+            @Param("itemCategories") List<String> itemCategories,
             @Param("days") int days
     );
 
@@ -130,6 +130,14 @@ public interface ReceiptItemRepository extends CrudRepository<ReceiptItem, Long>
             ORDER BY ri.item_category
             """, nativeQuery = true)
     List<String> findAllDistinctItemCategories();
+
+    @Query(value = """
+            SELECT DISTINCT ri.generic_item_name 
+            FROM receiptschema.receipt_item ri
+            WHERE ri.generic_item_name IS NOT NULL
+            ORDER BY ri.generic_item_name
+            """, nativeQuery = true)
+    List<String> findAllDistinctGenericItemNames();
 }
 
 

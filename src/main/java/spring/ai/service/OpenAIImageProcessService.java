@@ -31,8 +31,7 @@ public class OpenAIImageProcessService {
                         "contains store name, store address, purchase date, items purchased with quantity " +
                         "and price and total price.  Read the text from the image. " +
                         "Categorize the store into a storeCategory. e.g : grocery store, restaurant" +
-                        "Categorize items into a itemCategory e.g: Swim Suit, Swim Cap, " +
-                        "Toy, Tooth Paste, Pasta, Frozen Pizza etc."
+                        "Categorize items into a itemCategory. Give Items a generic item name (genericItemName)"
                         ).
                 media(new Media(MimeTypeUtils.IMAGE_PNG, imageResource)).build();
 

@@ -34,6 +34,7 @@ public class ReceiptServiceImpl implements ReceiptService {
             item.setQuantity(itemDto.getQuantity());
             item.setSubtotal(itemDto.getSubtotal());
             item.setItemCategory(itemDto.getItemCategory());
+            item.setGenericItemName(itemDto.getGenericItemName());
             return item;
         }).collect(Collectors.toList());
 
