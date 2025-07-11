@@ -8,6 +8,7 @@ import spring.ai.dto.ItemStorePurchaseDto;
 import java.util.List;
 
 public interface StoreAnalyticsService {
+
     List<ItemPurchaseStatsDto> getItemsPurchasedFromStore(String genericStoreName, int days);
 
     @Tool(description = "Get the items purchased from referenced Store Categories within the last specified amount of days." +

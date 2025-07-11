@@ -1,9 +1,9 @@
 package spring.ai.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import spring.ai.dto.StoreReceiptDTO;
 import spring.ai.entity.StoreReceipt;
@@ -32,10 +32,24 @@ public class ReceiptExtractionController {
         return openAIImageProcessService.extractTextFromImage(userInput);
     }
 
+    @PostMapping(value = "/extractText", consumes = MediaType.IMAGE_JPEG_VALUE)
+    public StoreReceiptDTO extractDataFromImage(@RequestBody byte[] imageBytes) {
+        // parse imageBytes
+        return openAIImageProcessService.extractTextFromImage(imageBytes);
+    }
+
+
     @GetMapping("/extractTextAndStore/{userInput}")
     String extractTextAndStore(@PathVariable String userInput) {
         StoreReceiptDTO storeReceiptDTO=  openAIImageProcessService.extractTextFromImage(userInput);
        StoreReceipt storeReceipt =  receiptService.saveReceipt(storeReceiptDTO);
+        return storeReceipt.toString();
+    }
+
+    @PostMapping(value = "/extractTextAndStore", consumes = MediaType.IMAGE_JPEG_VALUE)
+    String extractTextAndStore(@RequestBody byte[] imageBytes) {
+        StoreReceiptDTO storeReceiptDTO=  openAIImageProcessService.extractTextFromImage(imageBytes);
+        StoreReceipt storeReceipt =  receiptService.saveReceipt(storeReceiptDTO);
         return storeReceipt.toString();
     }
 
